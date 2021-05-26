@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.abernathyclinic.mediscreen.service_nosql.model.Patient;
-import com.abernathyclinic.mediscreen.service_nosql.repository.PatientRepository;
+import com.abernathyclinic.mediscreen.service_nosql.model.PatientNote;
+import com.abernathyclinic.mediscreen.service_nosql.repository.PatientNoteRepository;
 
 /**
  * Main controller of the application, it provide CRUD mapping allowing the user
  * to communicate with a MongoDB database. <br>
  */
 @RestController
-public class PatientController {
+public class PatientNoteController {
 
 	@Autowired
-	private PatientRepository patientRepository;
+	private PatientNoteRepository patientNoteRepository;
 
 	@GetMapping("/")
 	public String index() {
@@ -33,69 +33,70 @@ public class PatientController {
 	}
 
 	/**
-	 * GET mapping to retrieve the history of a {@link Patient} from the database by
-	 * using the UUID. <br>
+	 * GET mapping to retrieve the history of a {@link PatientNote} from the
+	 * database by using the UUID. <br>
 	 * 
 	 * @param UUID : of the patient to retrieve
 	 * @return the patient if present in the database
 	 */
 	@GetMapping("/patientHistory/{uuid}")
-	public Patient getPatientByUUID(@PathVariable("uuid") UUID uuid) {
-		return patientRepository.findPatientByUuid(uuid);
+	public PatientNote getPatientNoteByUUID(@PathVariable("uuid") UUID uuid) {
+		return patientNoteRepository.findPatientNoteByUuid(uuid);
 
 	}
 
 	/**
-	 * GET mapping to retrieve the history of all {@link Patient} from the database.
-	 * <br>
+	 * GET mapping to retrieve the history of all {@link PatientNote} from the
+	 * database. <br>
 	 * 
 	 * @return all the patients' history present in the database
 	 */
 	@GetMapping("/patientHistory")
-	public List<Patient> getAllPatients() {
-		return patientRepository.findAll();
+	public List<PatientNote> getAllPatientsNotes() {
+		return patientNoteRepository.findAll();
 	}
 
 	/**
-	 * POST mapping to save the history of a {@link Patient} in the database. <br>
+	 * POST mapping to save the history of a {@link PatientNote} in the database.
+	 * <br>
 	 * 
-	 * @param patient : to save
+	 * @param patientNote : to save
 	 * @return a success message
 	 */
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/patientHistory")
-	public String savePatient(@RequestBody Patient patient) {
-		patientRepository.save(patient);
+	public String savePatientNote(@RequestBody PatientNote patientNote) {
+		patientNoteRepository.save(patientNote);
 		return "Patient's notes sucessfully saved";
 	}
 
 	/**
-	 * PUT mapping to update an existing {@link Patient}'s history in the database.
-	 * <br>
+	 * PUT mapping to update an existing {@link PatientNote}'s history in the
+	 * database. <br>
 	 * 
-	 * @param uuid    : of the patient to update
-	 * @param patient : the notes to update
+	 * @param uuid        : of the patient to update
+	 * @param patientNote : the notes to update
 	 * @return a success message
 	 */
 	@PutMapping("/patientHistory/{uuid}")
-	public String updatePatient(@PathVariable("uuid") UUID uuid, @RequestBody Patient patient) {
-		Patient patientToUpdate = patientRepository.findPatientByUuid(uuid);
-		patientToUpdate.setNotes(patient.getNotes());
-		patientRepository.save(patientToUpdate);
+	public String updatePatientNote(@PathVariable("uuid") UUID uuid, @RequestBody PatientNote patientNote) {
+		PatientNote patientNoteToUpdate = patientNoteRepository.findPatientNoteByUuid(uuid);
+		patientNoteToUpdate.setNotes(patientNote.getNotes());
+		patientNoteRepository.save(patientNoteToUpdate);
 
 		return "Patient's notes successfully updated";
 	}
 
 	/**
-	 * DELETE mapping to delete a {@link Patient}'s history. <br>
+	 * DELETE mapping to delete a {@link PatientNote}'s history. <br>
 	 * 
 	 * @param uuid : of the patient to delete the notes
 	 * @return a success message
 	 */
 	@DeleteMapping("/patientHistory/{uuid}")
-	public String deletePatient(@PathVariable("uuid") UUID uuid) {
-		Patient patient = patientRepository.findPatientByUuid(uuid);
-		patientRepository.delete(patient);
+	public String deletePatientNote(@PathVariable("uuid") UUID uuid) {
+		PatientNote patientNote = patientNoteRepository.findPatientNoteByUuid(uuid);
+		patientNoteRepository.delete(patientNote);
 
 		return "The patient's notes has been successfully deleted in the database.";
 	}

@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.abernathyclinic.mediscreen.service_nosql.model.Patient;
+import com.abernathyclinic.mediscreen.service_nosql.model.PatientNote;
 
 /**
  * Interface used to define <b>CRUD</b> operations with the patient document.
@@ -12,8 +12,8 @@ import com.abernathyclinic.mediscreen.service_nosql.model.Patient;
  * It extends the {@link MongoRepository} interface delivered by Spring Data
  * MongoDB.
  */
-public interface PatientRepository extends MongoRepository<Patient, String> {
+public interface PatientNoteRepository extends MongoRepository<PatientNote, String> {
 
-	public Patient findPatientByUuid(UUID uuid); // ByUUID throw a PropertyReferenceException !
+	public PatientNote findPatientNoteByUuid(UUID uuid); // ByUUID throw a PropertyReferenceException !
 
 }

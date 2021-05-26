@@ -16,7 +16,7 @@ For more information about the available endpoints, feel free to checkout the sw
 - **JaCoCo 0.8.6**
 - **Swagger 3.0.0**
 - **MongoDB**
-- **MongoDB Embeded Database**
+- **Flapdoodle: MongoDB Embedded Database**
 - **Gradle 6.8.3**
 
 
@@ -30,7 +30,7 @@ Then it needs you to set up a MongoDB database locally or to have the access to 
 
 ## Test
 
-The application is entirely tested and reach a **90%** + code coverage. <br>
+The application is entirely tested. <br>
 You can do end-to-end tests by doing HTTP request with the differents endpoints provided, f.e with Postman. <br>
 If you wish to add or tweak some tests, you can find them under the traditional **src/test/java** package. <br>
 

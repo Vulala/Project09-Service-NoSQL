@@ -20,7 +20,7 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0' // Swagger
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo' // Embeded MongoDB
+	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo' // Embedded MongoDB
 }
 
 jacoco {
@@ -57,7 +57,7 @@ jacocoTestCoverageVerification {
       limit {
         counter = 'LINE'
         value = 'COVEREDRATIO'
-        minimum = 0.85
+        minimum = 0.70
       }
     }
   }

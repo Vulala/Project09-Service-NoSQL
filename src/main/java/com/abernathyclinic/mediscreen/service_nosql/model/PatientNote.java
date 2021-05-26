@@ -9,17 +9,17 @@ import org.springframework.data.annotation.Id;
  * The id is used by the MongoDB NoSQL database while the uuid directly point to
  * a specific patient. <br>
  */
-public class Patient {
+public class PatientNote {
 
 	@Id
 	private String id;
 	private UUID uuid;
 	private String notes;
 
-	public Patient() {
+	public PatientNote() {
 	}
 
-	public Patient(UUID uuid, String notes) {
+	public PatientNote(UUID uuid, String notes) {
 		this.uuid = uuid;
 		this.notes = notes;
 	}
@@ -32,10 +32,6 @@ public class Patient {
 		return uuid;
 	}
 
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-
 	public String getNotes() {
 		return notes;
 	}
@@ -46,7 +42,7 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return String.format("Patient [id: %s, UUID: '%s', Notes: '%s']", id, uuid, notes);
+		return String.format("Patient note = [id: %s, UUID: '%s', Notes: '%s']", id, uuid, notes);
 	}
 
 }
